@@ -8,13 +8,12 @@ BEAM is a method aimed at imputing missing bases and correcting base assignment 
 
 Installation
 ==================
-BEAM is a python script developed in a Windows and Unix/Linux 64-bit architecture, and does not need to be compiled prior to usage. To use BEAM, the following python packages need to be installed.
+BEAM is a python script developed in a Windows 64-bit architecture, and does not need to be compiled prior to usage. To use BEAM, the following python packages need to be installed.
 
 Python 2
 SciPy
 Biopython 
-
-Additionally, BEAM uses MEGA-CC (>= 7.0.18). MEGA-CC can be downloaded for Windows, Mac OS X, and Linux from (http://www.megasoftware.net).
+MEGA-CC (please download it from http://www.megasoftware.net/releases/MEGA-CC-7.1.3_win64_setup.exe)
 
 Input file
 ==================
