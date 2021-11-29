@@ -32,12 +32,12 @@ class MegaPP(object):
         	
         
     def __del__(self):
-        print 'deletion'	
+        print('deletion')	
         self._cleanup_temp_files()
         
     def do_mega_pp(self, alignment_builder, tree_builder, mega_id):
         
-        print 'computing PP'
+        print('computing PP')
         result = False
         self._update_file_names(mega_id)
     
@@ -62,7 +62,7 @@ class MegaPP(object):
         
     def _update_file_names(self, mega_id):        
         
-        print 'executing megacc parsimony tree construction in ' + self._temp_dir
+        print('executing megacc parsimony tree construction in ' + self._temp_dir)
         self._mega_id = mega_id
         self._alignment_file = self._temp_dir + mega_id + '.meg'
         self._input_tree_file = self._temp_dir + mega_id + '.nwk'		
@@ -70,7 +70,7 @@ class MegaPP(object):
         
     def _command_line_string(self):
     
-        print self._pp_file	   
+        print(self._pp_file)	   
         return 'megacc -a ' + self._mao_file + ' -d ' + self._alignment_file + ' -t ' + self._input_tree_file + ' -o ' + self._pp_file+' --all-seqs'
   
     def retrieve_pp_states(self):  
@@ -148,7 +148,7 @@ class MegaPP(object):
         
     
     def alignment_least_back_parallel_muts(self, remove_duplicates = True):
-        print 'finding alignment with least parallel and back mutations...'
+        print('finding alignment with least parallel and back mutations...')
         files = self._get_ancestral_states_files()
         seq_maker = MakeAncSeqMPMin()
 	

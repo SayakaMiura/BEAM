@@ -6,16 +6,16 @@ class TreeAnalizer:
 
     def find_branch_with_mutation(self, ancestor_states, offspring2ancestor, code2cell):
         SNV2branch={}
-        Len=len(ancestor_states[ancestor_states.keys()[0]])
+        Len=len(ancestor_states[list(ancestor_states.keys())[0]])
         Posi=0
-        print ancestor_states.keys(),code2cell		
+        print(list(ancestor_states.keys()),code2cell)		
         while Posi<Len:
             MutBra=''
             for Dec in offspring2ancestor:
-              if code2cell.has_key(Dec)==True:			
+              if (Dec in code2cell)==True:			
                if code2cell[Dec]!='Normal':			
                    Anc=offspring2ancestor[Dec]
-                   if ancestor_states.has_key(code2cell[Dec])!=True: Seq=self.CellExtant2Seq['#'+code2cell[Dec]]
+                   if (code2cell[Dec] in ancestor_states)!=True: Seq=self.CellExtant2Seq['#'+code2cell[Dec]]
                    else: Seq=ancestor_states[code2cell[Dec]]	
                 #   print Seq[Posi].split('\t')[0], ancestor_states[code2cell[Anc]][Posi].split('\t')[0]				   
                    if Seq[Posi].split('\t')[0]=='T' and ancestor_states[code2cell[Anc]][Posi].split('\t')[0]=='A':

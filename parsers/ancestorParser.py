@@ -31,7 +31,7 @@ class ancestorParser(object):
     
     def parse(self):
         try:
-            print 'parsing ancestor file...'
+            print('parsing ancestor file...')
             result = False
             if os.path.isfile(self._input_file_name) == False:
                 IOError('ancestral states file not found')
@@ -49,7 +49,7 @@ class ancestorParser(object):
             if len(lines)>2:#result == True:
                 pass#print 'successfully parsed ancestral states file: ' + str(self._ancestral_states.num_nodes) + ' taxa'
             else:
-                print 'failed to parse ancestral states file'
+                print('failed to parse ancestral states file')
             return result
         except Exception as e:
             traceback.print_exc()           

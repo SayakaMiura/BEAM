@@ -18,7 +18,7 @@ class PredictCellGenotype():
       if status == True:
                tree = tree_builder.newick_trees
       else:
-                print 'failed to run megaML'	  
+                print('failed to run megaML')	  
       self.Tree_rooted = tree_analyzer.RootTree(tree, 'Normal')
    
     def Compute_PP(self):
@@ -26,7 +26,7 @@ class PredictCellGenotype():
         tree_analyzer = TreeAnalizer()  
         PP_builder = MegaPP() 		
         Input=self.Tree_rooted
-        print 'input for inferring missing',Input
+        print('input for inferring missing',Input)
         Meg=self.InMeg
         NameOrder, self.Cell2megSeq=Align.name2seq_with_normal(Meg)
         id = 'All_alignment' 
@@ -35,13 +35,13 @@ class PredictCellGenotype():
                     self.Cell2PP = PP_builder.retrieve_pp_states() 		
 
         else:
-                    print 'failed to run megaPP'						
+                    print('failed to run megaPP')						
               			
     def get_PP_for_selected_nuc_corr(self):
            return self.Cell2PPsel 	
 
     def Correct_error5(self):
-        print 'correct errors'	  	
+        print('correct errors')	  	
         self.Compute_PP()
         New_seq=['#MEGA','!Title SNVs;','!Format datatype=dna;',' ']
         self.Cell2PPsel={}		
@@ -50,7 +50,7 @@ class PredictCellGenotype():
           if Cell!='Normal':		  
            self.Cell2PPsel[Cell]=[]		
            original_seq=self.Cell2megSeq['#'+Cell]
-           if self.Cell2PP.has_key(Cell)!=True: seq=original_seq
+           if (Cell in self.Cell2PP)!=True: seq=original_seq
            else:			 		 
              self.normal_seq = self.Cell2megSeq['#Normal']			 	 
              Nuc2PPlist=self.Cell2PP[Cell]

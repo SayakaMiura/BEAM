@@ -31,7 +31,7 @@ class nodeMapParser(object):
     
     def parse(self):
         try:
-            print 'parsing nodeMap file...'
+            print('parsing nodeMap file...')
             result = False
             if os.path.isfile(self._input_file_name) == False:
                 IOError('ancestral states file not found')
@@ -49,7 +49,7 @@ class nodeMapParser(object):
             if len(lines)>2:#result == True:
                 pass#print 'successfully parsed ancestral states file: ' + str(self._ancestral_states.num_nodes) + ' taxa'
             else:
-                print 'failed to parse ancestral states file'
+                print('failed to parse ancestral states file')
             return result
         except Exception as e:
             traceback.print_exc()           
@@ -86,14 +86,14 @@ class nodeMapParser(object):
                 NewDup=[]
                 for D in NewD:
                    # print D				
-                    if self.Code2Cell.has_key(D)==True: 
+                    if (D in self.Code2Cell)==True: 
                           if self.Code2Cell[D].find('Node_')==-1:Dlin.append(self.Code2Cell[D])
                           else: NewDup+=self.A2D[D]						  
-                    elif self.A2D.has_key(D)==True:NewDup+=self.A2D[D]
+                    elif (D in self.A2D)==True:NewDup+=self.A2D[D]
                     
                 NewD=NewDup
-           	self.A2lin[A]=Dlin				
-    
+         #   print (Dlin)
+            self.A2lin[A]=Dlin    
     def get_anc2dec_lin(self):
         	
         return self.A2D, self.A2lin	

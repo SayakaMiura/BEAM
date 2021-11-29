@@ -51,7 +51,7 @@ class ClusterQuality3:
                     NewSeq=''
                     while c<self.SNVnum:
                         if CellSeq[c]=='?': NewSeq+='?' 
-                        elif Posi2Nuc.has_key(c)!=True: NewSeq+=CellSeq[c]
+                        elif (c in Posi2Nuc)!=True: NewSeq+=CellSeq[c]
                         else: NewSeq+=Posi2Nuc[c]
                         c+=1
                     Cell2BestSeq['#'+Cell]=NewSeq	
@@ -65,7 +65,7 @@ class ClusterQuality3:
         if status == True:
             tree1 = tree_builder.newick_trees
         else:
-            print 'failed to run megaML'
+            print('failed to run megaML')
         Tree_Rooted1 = tree_analyzer.RootTree_rootBottom(tree1, 'Normal')
 	
         InferAncestor = MegaAncestor()
@@ -116,11 +116,11 @@ class ClusterQuality3:
           if self.Cellclade_withSupport2SupportCount[Clade]>=self.cut:		
             CellLs = self.node2cellclade[Clade]	
             for Cell in CellLs:
-                if Cell2CladeID.has_key(Cell)!=True: Cell2CladeID[Cell]=[]
+                if (Cell in Cell2CladeID)!=True: Cell2CladeID[Cell]=[]
                 Cell2CladeID[Cell].append(Clade)	
         for Cell in self.Cell2Seq:
             Cell=Cell[1:]		
-            if Cell!='Normal' and Cell2CladeID.has_key(Cell)!=True: Cell2CladeID[Cell]=['root']
+            if Cell!='Normal' and (Cell in Cell2CladeID)!=True: Cell2CladeID[Cell]=['root']
    
         Cell2CladeIDstr={}
         CladeIDstr2CloType={}
@@ -168,7 +168,7 @@ class ClusterQuality3:
         Clade2Support_clean={}
         for code in self.code2cell:
          # print code		
-          if self.code2cell[code]!='Normal' and self.offspring2ancestor.has_key(code)==True:		
+          if self.code2cell[code]!='Normal' and (code in self.offspring2ancestor)==True:		
             if self.code2cell[code].find('Node_') != -1:
                 OffSeq=self.ancestor_states[self.code2cell[code]]
             else:

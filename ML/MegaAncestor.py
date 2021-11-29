@@ -36,7 +36,7 @@ class MegaAncestor(object):
         
     def do_mega_ancestor(self):
         
-        print 'infer ancestral sequences'
+        print('infer ancestral sequences')
         result = False
         alignment_builder = self._alignment_file
         tree_builder = self._input_tree_file		
@@ -55,7 +55,7 @@ class MegaAncestor(object):
         
     def _update_file_names(self, mega_id):        
         
-        print 'executing megacc ancestral sequence construction in ' + self._temp_dir
+        print('executing megacc ancestral sequence construction in ' + self._temp_dir)
         self._mega_id = mega_id
         self._alignment_file = self._temp_dir + mega_id + '.meg'
         self._input_tree_file = self._temp_dir + mega_id + '.nwk'		
@@ -144,7 +144,7 @@ class MegaAncestor(object):
 
     
     def alignment_least_back_parallel_muts(self, remove_duplicates = True):
-        print 'finding alignment with least parallel and back mutations...'
+        print('finding alignment with least parallel and back mutations...')
         files = self._get_ancestral_states_files()
         seq_maker = MakeAncSeqMPMin()
 	

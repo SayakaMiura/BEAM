@@ -30,15 +30,15 @@ class MegaML(object):
         	
         
     def __del__(self):
-        print 'deletion call'	
+        print('deletion call')	
         self._cleanup_temp_files()
         
     def do_mega_ml(self, alignment_builder, mega_id):
         
-        print 'constructing ML tree'
+        print('constructing ML tree')
         result = False
         self._update_file_names(mega_id)
-        print self._alignment_file		
+        print(self._alignment_file)		
         Align = MegaAlignment()
         Align.save_mega_alignment_to_file(self._alignment_file, alignment_builder)       		
 
@@ -48,11 +48,11 @@ class MegaML(object):
             result = True
             nf = open(self._newick_file, 'r')
            # ns = nf.readlines()
-            print 'ML tree:'
+            print('ML tree:')
           #  for line in ns:
                # print line
             self._newick_trees=nf.readlines()[0]
-            print self._newick_trees			
+            print(self._newick_trees)			
             nf.close()
            # self._retrieve_ancestral_states()
        # self._cleanup_temp_files()		   
@@ -60,7 +60,7 @@ class MegaML(object):
         
     def _update_file_names(self, mega_id):        
         
-        print 'executing megacc ml tree construction in ' + self._temp_dir
+        print('executing megacc ml tree construction in ' + self._temp_dir)
         self._mega_id = mega_id
         self._alignment_file = self._temp_dir + mega_id + '.meg'
         self._newick_file = self._temp_dir + mega_id + '.nwk'
@@ -79,12 +79,12 @@ class MegaML(object):
          #   self._ancestral_states_list.append(states_list)            
         
     def _cleanup_temp_files(self): 
-        print 'h',self._alignment_file	
-        os.remove(self._alignment_file)
-        os.remove(self._newick_file)
+        print('h',self._alignment_file)	
+        if os.path.exists(self._alignment_file)==True: os.remove(self._alignment_file)
+        if os.path.exists(self._newick_file)==True: os.remove(self._newick_file)
 		
         summary_file = self._temp_dir + self._mega_id + '_summary.txt'
-        os.remove(summary_file)
+        if os.path.exists(summary_file)==True: os.remove(summary_file)
  #       files = self._get_ancestral_states_files()
   #      for file in files:
    #       os.remove(file)

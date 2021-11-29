@@ -31,7 +31,7 @@ class PPParser(object):
     
     def parse(self):
         try:
-            print 'parsing pp file...'
+            print('parsing pp file...')
             result = False
             if os.path.isfile(self._input_file_name) == False:
                 IOError('ancestral states file not found')
@@ -49,7 +49,7 @@ class PPParser(object):
             if len(lines)>2:#result == True:
                 pass#print 'successfully parsed ancestral states file: ' + str(self._ancestral_states.num_nodes) + ' taxa'
             else:
-                print 'failed to parse ancestral states file'
+                print('failed to parse ancestral states file')
             return result
         except Exception as e:
             traceback.print_exc()           
@@ -58,7 +58,7 @@ class PPParser(object):
         
             
     def _parse_line(self, EP):
-        print EP[0]
+        print(EP[0])
         #open('AAA','r').readlines()		
         self.CellID = EP[0].split('"')[1]	
         Head=EP[2].strip().split(',')
