@@ -16,10 +16,6 @@ FastTree.exe (please please place FastTree.exe in this folder)
 Input file
 ==================
 The input file is the alignment of observed single-cell sequences with fasta format. Please add a germline sequence with the ID of "normal." 
- 
-* "T": Mutant allele
-* "A": Wild-type allele
-* "?": Missing base
 
 How to run
 ==================
