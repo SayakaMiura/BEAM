@@ -30,12 +30,7 @@ Example
 
 python BEAMpp.py Example/Test.fasta normal
 
-After running BEAM, the output file (refined cell sequences) can be found in the directory of input file. 
-
-A: Non-mutant base
-T: Mutant base
-
-The posterior probability is listed in the text file. 
+The posterior probability will be listed in the output text file. 
 
 How to cite
 =================
