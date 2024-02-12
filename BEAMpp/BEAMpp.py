@@ -28,7 +28,9 @@ if Type==4:
     if Go=='y':            
         tree_analyzer.root_tree(Tree,Normal)
         Rtree=Tree[:-4]+'_rooted.nwk'
-        SNVc=Align.Nuc2BEAMinWnNoFil(InATGC,InATGC[:-6]+'.meg',Normal)
+        SNVc,ExtraLs=Align.Nuc2BEAMinWnNoFil(InATGC,InATGC[:-6]+'.meg',Normal)
+        tree_analyzer.prune_tree(Rtree,ExtraLs)
+        Rtree=Rtree[:-4]+'_prune.nwk'
         In=InATGC[:-6]+'.meg' 
         OutMegFile=In[:-4]+'_BEAM.meg'
         InFile=In
@@ -47,7 +49,7 @@ if Type==4:
       #      os.system('FastTree.exe -nt '+OutMegFile[:-4]+'Correct1.fasta'+ ' > '+Tree)   
       #  tree_analyzer.root_tree(Tree,Normal)             
 
-CSV=glob.glob(InATGC[:-6]+'_rooted_PP*') 
+CSV=glob.glob(InATGC[:-6]+'_rooted_prune_PP*') 
 for i in CSV:
     os.remove(i)
     
