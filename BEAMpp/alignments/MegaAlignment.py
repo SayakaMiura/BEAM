@@ -78,6 +78,7 @@ class MegaAlignment():
         Len=len(Cell2Seq[CellLs[0]])
         RefSeq=Cell2Seq[Normal]
         out=['#mega\n!Title Cell;\n!Format DataType=DNA indel=-;\n'] 
+        Bad=[]
         for Cell in CellLs:
            Seq=Cell2Seq[Cell]
            if len(Seq)!=Len:
@@ -92,11 +93,12 @@ class MegaAlignment():
               c+=1
            if NewSeq.find('T')!=-1: 
                out.append('#'+Cell.replace('>','')+'\n'+NewSeq+'\n') 
+           elif Cell.replace('>','')!=Normal: Bad.append(Cell.replace('>',''))    
         OutF=open(BEAMin,'w')
         OutF.write(''.join(out))
         OutF.close()        
         #GetOut(BEAMin,''.join(out))                                     
-        return Len
+        return Len,Bad
             
     def find_identical_cellseq(self,Root,Fas):
        IdenCellLs=[]
