@@ -63,4 +63,12 @@ class TreeAnalizer:
         Phylo.write(trees, 'test1.nwk', "newick")	
 
         return open('test1.nwk','r').readlines()[0]	
+    def prune_tree(self,OriNwk,ExtraLs):
+
+      # Tst=open(OriNwk,'r').readlines()[0]
+       tree=Phylo.read(OriNwk, "newick")
+       for tip in ExtraLs:
+           tree.prune(tip)
+       Phylo.write(tree, OriNwk[:-4]+'_prune.nwk','newick')
+
   
