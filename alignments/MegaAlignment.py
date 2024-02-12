@@ -55,6 +55,7 @@ class MegaAlignment():
         elif Read=='s': out2+=i
       return NameOrder, Name2Seq		
     def ReadFas(self, Meg): 
+      Meg=open(Meg,'r').readlines()
       Read='s'
       out2=''
       NameOrder=[]
@@ -71,6 +72,34 @@ class MegaAlignment():
         elif Read=='n': Cell2Seq[Name]+=i.strip()
     
       return NameOrder, Cell2Seq	
+    def Nuc2BEAMinWnNoFil(self,Fas,BEAMin,Normal):
+        CellLs,Cell2Seq=self.ReadFas(Fas)
+       # print (Fas,CellLs)
+        Len=len(Cell2Seq[CellLs[0]])
+        RefSeq=Cell2Seq[Normal]
+        out=['#mega\n!Title Cell;\n!Format DataType=DNA indel=-;\n'] 
+        Bad=[]
+        for Cell in CellLs:
+           Seq=Cell2Seq[Cell]
+           if len(Seq)!=Len:
+               print ('seq length different',len(Seq),Len,Cell,CellLs[0])
+               open('a','r').readlines()
+           c=0
+           NewSeq=''
+           while c < Len:
+              if Seq[c]=='?': NewSeq+='?'
+              elif Seq[c]!=RefSeq[c]: NewSeq+='T'
+              else: NewSeq+='A'
+              c+=1
+           if NewSeq.find('T')!=-1: 
+               out.append('#'+Cell.replace('>','')+'\n'+NewSeq+'\n') 
+           elif Cell.replace('>','')!=Normal: Bad.append(Cell.replace('>',''))    
+        OutF=open(BEAMin,'w')
+        OutF.write(''.join(out))
+        OutF.close()        
+        #GetOut(BEAMin,''.join(out))                                     
+        return Len,Bad
+            
     def find_identical_cellseq(self,Root,Fas):
        IdenCellLs=[]
        NameOrder, Cell2Seq = self.ReadFas(Fas)
