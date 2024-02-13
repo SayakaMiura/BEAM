@@ -10,6 +10,10 @@ import Functions3
 
 Align=MegaAlignment()
 In=sys.argv[1]
+if In[-6:]=='.fasta':
+    Normal='normal'
+    SNVc,ExtraLs=Align.Nuc2BEAMinWnNoFil(In,In[:-6]+'.meg',Normal)
+    In=In[:-6]+'.meg'
 #TreeInf=In[:-4]+'.nwk'
 TreeInf=In[:-4]+'_rooted.nwk'
 if os.path.exists(TreeInf)!=True:
@@ -110,7 +114,7 @@ elif Go=='ori':
 #os.remove('test.nwk')
 #os.remove('test1.nwk')
  os.remove(OutMegFile[:-4]+'_withCloneID.meg')  
-CSV=glob.glob('*.csv')
+CSV=glob.glob('All_alignment_PPseq-*.csv')
 for i in CSV:
     os.remove(i)
   
